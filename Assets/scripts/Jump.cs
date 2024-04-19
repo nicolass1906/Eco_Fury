@@ -6,31 +6,36 @@ public class Jump : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Rigidbody playerRigidbody;
-    private Moviments moviment;
-    
-    public bool isGrounded;
-    public float jumpForce = 5f;
-    float Space = Input.GetAxis("vertical");
+    bool  isGrounded = false;
+    public float jumpforce = 5.0f;
+
+    public float mass = 5.0f;
+
+    private Rigidbody rigidbody;
+
     void Start()
     {
-        moviment = GetComponent<Moviments>();
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.mass = mass;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        jumpingforce();
-    }
+        if(!Input.GetKeyDown(KeyCode.Space) || !isGrounded)
+        {
+            return;
+        }
 
-    private void jumpingforce()
-    {
-        
+
+            rigidbody.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            new Vector3(0,0,0);
+            
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if(collision.gameObject.CompareTag("ground")) 
         {
             isGrounded = true;
         }
@@ -38,7 +43,7 @@ public class Jump : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if(collision.gameObject.CompareTag("ground")) 
         {
             isGrounded = false;
         }

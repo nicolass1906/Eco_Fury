@@ -22,6 +22,6 @@ public class Moviments : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
 
-        transform.Translate(new Vector3(0, x, 0) * velocity * Time.deltaTime);
+        transform.Translate(new Vector3(x, 0, 0) * velocity * Time.deltaTime);
     }
 }
