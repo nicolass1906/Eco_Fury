@@ -20,7 +20,7 @@ public class Moviments : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
+        float x = Input.GetAxis("Vertical");
 
         transform.Translate(new Vector3(x, 0, 0) * velocity * Time.deltaTime);
     }
